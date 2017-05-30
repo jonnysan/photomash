@@ -1,0 +1,82 @@
+<!-- Validation failure messages -->
+<% if @showdown.errors.any? %>
+  <% @showdown.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Showdown #<%= @showdown.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_showdown/<%= @showdown.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for winner_id -->
+      <div class="form-group">
+        <label for="winner_id" class="control-label">
+          Winner
+        </label>
+
+        <input type="text" id="winner_id" name="winner_id" placeholder="Winner" class="form-control" value="<%= @showdown.winner_id %>">
+      </div>
+
+      <!-- Label and input for loser_id -->
+      <div class="form-group">
+        <label for="loser_id" class="control-label">
+          Loser
+        </label>
+
+        <input type="text" id="loser_id" name="loser_id" placeholder="Loser" class="form-control" value="<%= @showdown.loser_id %>">
+      </div>
+
+      <!-- Label and input for winner_oldrating -->
+      <div class="form-group">
+        <label for="winner_oldrating" class="control-label">
+          Winner oldrating
+        </label>
+
+        <input type="text" id="winner_oldrating" name="winner_oldrating" placeholder="Winner oldrating" class="form-control" value="<%= @showdown.winner_oldrating %>">
+      </div>
+
+      <!-- Label and input for winner_newrating -->
+      <div class="form-group">
+        <label for="winner_newrating" class="control-label">
+          Winner newrating
+        </label>
+
+        <input type="text" id="winner_newrating" name="winner_newrating" placeholder="Winner newrating" class="form-control" value="<%= @showdown.winner_newrating %>">
+      </div>
+
+      <!-- Label and input for loser_oldrating -->
+      <div class="form-group">
+        <label for="loser_oldrating" class="control-label">
+          Loser oldrating
+        </label>
+
+        <input type="text" id="loser_oldrating" name="loser_oldrating" placeholder="Loser oldrating" class="form-control" value="<%= @showdown.loser_oldrating %>">
+      </div>
+
+      <!-- Label and input for loser_newrating -->
+      <div class="form-group">
+        <label for="loser_newrating" class="control-label">
+          Loser newrating
+        </label>
+
+        <input type="text" id="loser_newrating" name="loser_newrating" placeholder="Loser newrating" class="form-control" value="<%= @showdown.loser_newrating %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Showdown
+      </button>
+      or
+      <a href="/showdowns/<%= @showdown.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

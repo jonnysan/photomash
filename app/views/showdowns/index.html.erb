@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h1>
+    Showdowns
+    <a href="/showdowns/new" class="btn btn-lg btn-success">New Showdown</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Winner</th>
+        <th>Loser</th>
+        <th>Winner oldrating</th>
+        <th>Winner newrating</th>
+        <th>Loser oldrating</th>
+        <th>Loser newrating</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @showdowns.each do |showdown| %>
+      <tr>
+        <td><%= showdown.winner_id %></td>
+        <td><%= showdown.loser_id %></td>
+        <td><%= showdown.winner_oldrating %></td>
+        <td><%= showdown.winner_newrating %></td>
+        <td><%= showdown.loser_oldrating %></td>
+        <td><%= showdown.loser_newrating %></td>
+        <td>
+          <a href="/showdowns/<%= showdown.id %>" class="btn btn-primary">Show</a>
+          <a href="/showdowns/<%= showdown.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_showdown/<%= showdown.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
