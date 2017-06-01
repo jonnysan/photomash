@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Routes for the Showdown resource:
   # CREATE
   get "/showdowns/new", :controller => "showdowns", :action => "new"
-  post "/create_showdown", :controller => "showdowns", :action => "create"
+  get "/create_showdown/:winner_id/:loser_id", :controller => "showdowns", :action => "create"
 
   # READ
   get "/showdowns", :controller => "showdowns", :action => "index"

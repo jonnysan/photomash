@@ -13,26 +13,14 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <form action="/create_showdown" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for winner_id -->
-      <div class="col-md-6"><label class="radio-inline"><input type="radio" name="winner_id" value="<%= @img1.id %>"><img src="<%= @img1.image_url %>" class="img-responsive"></label></div>
-
-      <div class="col-md-6"><label class="radio-inline"><input type="radio" name="winner_id" value="<%= @img2.id %>"><img src="<%= @img2.image_url %>" class="img-responsive"></label></div>
-
-      <input name="img1" type="hidden" value="<%= @img1.id %>">
-      <input name="img2" type="hidden" value="<%= @img2.id %>">
-
-      <div class="row">
-        <button class="btn btn-success">
-          Submit Winner
-        </button>
-        or
-        <a href="/showdowns">Cancel</a>
-      </div>
-    </form>
+  <div class="col-md-6">
+    <a href="/create_showdown/<%= @img1.id %>/<%= @img2.id %>">
+      <img src="<%= @img1.image_url %>" class="img-responsive">
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a href="/create_showdown/<%= @img2.id %>/<%= @img1.id %>">
+      <img src="<%= @img2.image_url %>" class="img-responsive">
+    </a>
   </div>
 </div>
