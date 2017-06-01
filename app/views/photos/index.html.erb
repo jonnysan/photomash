@@ -13,8 +13,7 @@
         <!-- <th>User</th> -->
         <th>Rank</th>
         <th>Rating</th>
-        <th>Image url</th>
-        <th>Actions</th>
+        <th>Image</th>
       </tr>
       <% @count = 1 %>
       <% @photos.each do |photo| %>
@@ -22,11 +21,7 @@
         <!-- <td><%= photo.user_id %></td> -->
         <td>#<%= @count %></td>
         <td><%= photo.rating.round(0) %></td>
-        <div class="col-sm-1"><td><img src="<%= photo.image_url %>" height="150"></td></div>
-        <td>
-          <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_photo/<%= photo.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
+        <div class="col-sm-1"><td><a href="/photos/<%= photo.id %>"><img src="<%= photo.image_url %>" height="150"></a></td></div>
       </tr>
       <% @count = @count + 1 %>
       <% end %>

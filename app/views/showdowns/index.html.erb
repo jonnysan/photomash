@@ -3,6 +3,7 @@
     Showdown History
 
   </h1>
+  <%= @showdowns.count %> total showdowns
 </div>
 
 <div class="row">
@@ -19,8 +20,8 @@
 
       <% @showdowns.each do |showdown| %>
       <tr>
-        <td><%= showdown.winner_id %></td>
-        <td><%= showdown.loser_id %></td>
+        <td><a href="/photos/<%= showdown.winning_photo.id %>"><img src="<%= showdown.winning_photo.image_url %>" height="50"></a></td>
+        <td><a href="/photos/<%= showdown.losing_photo.id %>"><img src="<%= showdown.losing_photo.image_url %>" height="50"></a></td>
         <td><%= showdown.winner_oldrating.round(0) %></td>
         <td><%= showdown.winner_newrating.round(0) %></td>
         <td><%= showdown.loser_oldrating.round(0) %></td>

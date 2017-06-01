@@ -7,7 +7,8 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find(params[:id])
-
+    @wins = Showdown.where(winner_id: params[:id]).count
+    @losses = Showdown.where(loser_id: params[:id]).count
     render("photos/show.html.erb")
   end
 
@@ -27,7 +28,7 @@ class PhotosController < ApplicationController
     save_status = @photo.save
 
     if save_status == true
-      redirect_to("/photos/#{@photo.id}", :notice => "Photo created successfully.")
+      redirect_to("/photos", :notice => "Photo created successfully.")
     else
       render("photos/new.html.erb")
     end

@@ -20,20 +20,16 @@
 
       <!-- Label and input for user_id -->
       <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
 
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
       </div>
 
       <!-- Label and input for rating -->
-      <div class="form-group">
-        <label for="rating" class="control-label">
-          Rating
-        </label>
 
-        <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="1600">
+      <div class="form-group">
+
+        <input type="hidden" id="rating" name="rating" placeholder="Rating" class="form-control" value="1600">
       </div>
 
       <!-- Label and input for image_url -->

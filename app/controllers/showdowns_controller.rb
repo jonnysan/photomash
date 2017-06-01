@@ -1,6 +1,6 @@
 class ShowdownsController < ApplicationController
   def index
-    @showdowns = Showdown.all
+    @showdowns = Showdown.all.reverse
 
     render("showdowns/index.html.erb")
   end
