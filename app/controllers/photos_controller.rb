@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   def index
-    @photos = Photo.all
+    @photos = Photo.all.sort_by{|t| t.rating}.reverse
 
     render("photos/index.html.erb")
   end

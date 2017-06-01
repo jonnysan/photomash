@@ -19,7 +19,7 @@
       <tr>
         <!-- <td><%= photo.user_id %></td> -->
         <td><%= photo.rating %></td>
-        <div class="col-sm-1"><td><img src="<%= photo.image_url %>"></td></div>
+        <div class="col-sm-1"><td><img src="<%= photo.image_url %>" height="150"></td></div>
         <td>
           <a href="/photos/<%= photo.id %>" class="btn btn-primary">Show</a>
           <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">Edit</a>

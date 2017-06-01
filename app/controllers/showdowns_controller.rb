@@ -21,18 +21,55 @@ class ShowdownsController < ApplicationController
 
   def create
     @showdown = Showdown.new
-
+    @winner_id = params[:winner_id].to_f
     @showdown.winner_id = params[:winner_id]
-    @showdown.loser_id = params[:loser_id]
-    @showdown.winner_oldrating = params[:winner_oldrating]
-    @showdown.winner_newrating = params[:winner_newrating]
-    @showdown.loser_oldrating = params[:loser_oldrating]
-    @showdown.loser_newrating = params[:loser_newrating]
+    if :winner_id == :img1
+      @showdown.loser_id = params[:img2]
+      @loser_id = params[:img2].to_f
+    else
+      @showdown.loser_id = params[:img1]
+      @loser_id = params[:img1].to_f
+    end
+
+    @showdown.winner_oldrating = Photo.find(params[:winner_id]).rating
+
+    @showdown.loser_oldrating = Photo.find(@loser_id).rating
+    @winrate = Photo.find(@winner_id).rating.to_f
+    @rwinner = 10 ** ( @winrate / 400)
+    @loserate = Photo.find(@loser_id).rating.to_f
+    @rloser = 10 ** ( @loserate / 400)
+
+
+
+    @showdown.winner_newrating = Photo.find(params[:winner_id]).rating + 32*(1-(@rwinner / (@rwinner + @rloser)))
+    @showdown.loser_newrating = Photo.find(@loser_id).rating + 32*(0-@rloser / (@rwinner + @rloser))
 
     save_status = @showdown.save
 
     if save_status == true
-      redirect_to("/showdowns/#{@showdown.id}", :notice => "Showdown created successfully.")
+      @photo = Photo.find(params[:winner_id])
+
+      @photo.rating = @showdown.winner_newrating
+
+      save_status = @photo.save
+
+      if save_status == true
+        @photob = Photo.find(@loser_id)
+
+        @photob.rating = @showdown.loser_newrating
+
+        save_status = @photob.save
+
+        if save_status == true
+                redirect_to("/showdowns/new", :notice => "Showdown created successfully.")
+        else
+          render("showdowns/new.html.erb")
+        end
+
+      else
+        render("showdowns/new.html.erb")
+      end
+
     else
       render("showdowns/new.html.erb")
     end
