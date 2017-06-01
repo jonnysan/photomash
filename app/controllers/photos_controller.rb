@@ -28,7 +28,7 @@ class PhotosController < ApplicationController
     save_status = @photo.save
 
     if save_status == true
-      redirect_to("/photos", :notice => "Photo created successfully.")
+      redirect_to("/photos/new", :notice => "Photo created successfully.")
     else
       render("photos/new.html.erb")
     end
